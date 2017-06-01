@@ -1,0 +1,29 @@
+{
+    "head_style": {"bold": 1},
+    "head": [
+        {"cell": "Name", "link": "name_vorname"},
+        {"cell": "Jahr", "link": "geburtsdatum"},
+        {"cell": "Grad", "link": "grad", "format": {"num_format": "yyyy"}},
+        {"cell": "Mobilnummer", "link": "mobilnummer"},
+        {"cell": "Adresse", "link": "adresse_1"},
+        {"cell": "PLZ", "link": "plz"},
+        {"cell": "Ort", "link": "ort"},
+        {"cell": "Funktion", "link": "funktion"},
+        {"cell": "Einteilung", "link": "einteilung"},
+    ],
+    "group": [
+        {"cell": "Komando", "select": "funktion like 'Kp Kdt%'", "sort": "funktion, geburtsdatum", "format": {"bold": 1, "fg_color": "blue"}},
+        {"cell": "Führungsunterstützung", "select": "funktion like 'C%' or funktion = 'Stabsassist' or funktion like 'Fhr Ust%' or funktion = 'Tm Uof'", "sort": "funktion, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "grey"}},
+        {"cell": "Betreuung", "select": "funktion like 'Betreu%'", "sort": "Einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "yellow"}},
+        {"cell": "Kulturgüterschutz", "select": "funktion like '%KGS%'", "sort": "Funktion, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "orange"}},
+        {"cell": "Pionier-Kader Saanenland", "select": "(funktion = 'Pi Of' or funktion = 'Pi Uof') and plz > 3777", "sort": "Funktion, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "red"}},
+        {"cell": "Pionier Saanenland unter 30", "select": "funktion = 'Pi' and plz > 3777 and (strftime('%Y', 'now') - strftime('%Y', geburtsdatum)) <= 30", "sort": "einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "red"}},
+        {"cell": "Pionier Saanenland über 30", "select": "funktion = 'Pi' and plz > 3777 and (strftime('%Y', 'now') - strftime('%Y', geburtsdatum)) < 30", "sort": "einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "red"}},
+        {"cell": "Pionier-Kader Obersimmental", "select": "(funktion = 'Pi Of' or funktion = 'Pi Uof') and plz < 3777", "sort": "einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "red"}},
+        {"cell": "Pionier Obersimmental unter 30", "select": "funktion = 'Pi' and plz < 3777 and (strftime('%Y', 'now') - strftime('%Y', geburtsdatum)) <= 30", "sort": "einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "red"}},
+        {"cell": "Pionier Obersimmental über 30", "select": "funktion = 'Pi' and plz < 3777 and (strftime('%Y', 'now') - strftime('%Y', geburtsdatum)) < 30", "sort": "einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "red"}},
+        {"cell": "Logistik", "select": "funktion = 'Fw' or funktion = 'Kü C' or funktion = 'Koch'", "sort": "Einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "olive green"}},
+        {"cell": "Anlagewart", "select": "funktion = 'Anlw'", "sort": "Einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "olive green"}},
+        {"cell": "Materialwart", "select": "funktion = 'Matw'", "sort": "Einteilung, ort, geburtsdatum", "format": {"bold": 1, "fg_color": "olive green"}},
+    ]
+}
