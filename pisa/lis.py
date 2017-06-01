@@ -8,11 +8,12 @@ def lis_to_dict(lis_file):
     """Convert a LIS into a dict.
 
         Return a list with dict:
-        [
-            {"cell": "dat", ...}  // row
-        ]
+        {
+            "head": [],
+            "rows": [(), ()]
+        }
     """
-    result = []
+    data = []
 
     try:
         with lis_file.open('r') as input_data:
@@ -22,18 +23,15 @@ def lis_to_dict(lis_file):
         _LOGGER.error("Error while read %s: %s", lis_file, err)
         return []
 
-    head = (lines.pop(0).lower()).split(';')
+    head = ((lines.pop(0).lower()).replace(" ", "_")).split(';')
 
     # loop trought list
+    rows = list()
     for line in lines:
-        line = line.split(';')
+        rows.append(cell for cell in line.split(';'))
 
-        # cells
-        row = {}
-        for i in range(0, len(head)):
-            row[head[i]] = line[i]
+    # set data
+    data['head'] = head
+    data['rows'] = rows
 
-        # done
-        result.append(row)
-
-    return result
+    return data
