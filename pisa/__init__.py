@@ -1,1 +1,1 @@
-"""Submodule for PISA manschaftsliste."""
+"""Submodule for PISA things."""
