@@ -1,4 +1,5 @@
 """A in memory database handle for temporary transform."""
+from datetime import datetime
 import logging
 import sqlite3
 
@@ -28,8 +29,7 @@ class TmpDB(object):
         """Initialize in memory database."""
         self._head = None
 
-        self._con = sqlite3.connect(
-            str(filename), detect_types=sqlite3.PARSE_DECLTYPES)
+        self._con = sqlite3.connect(str(filename))
         self._con.row_factory = dict_factory
 
     def close(self):
@@ -71,4 +71,14 @@ class TmpDB(object):
 
         curs = self._con.cursor()
         curs.execute(" ".join(cmd))
-        return curs.fetchall()
+        data = curs.fetchall()
+
+        # convert types
+        for row in data:
+            for cell, db_type in MAP_FIELD_TO_TYPE.items():
+                if db_type == 'DATETIME':
+                    row[cell] = datetime.strptime(row[cell], '%Y-%m-%d')
+                elif db_type == 'INTEGER':
+                    row[cell] = int(row[cell])
+
+        return data

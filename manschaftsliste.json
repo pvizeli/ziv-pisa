@@ -2,8 +2,8 @@
     "head_style": {"bold": 1},
     "head": [
         {"cell": "Name", "link": "name_vorname"},
-        {"cell": "Jahr", "link": "geburtsdatum"},
-        {"cell": "Grad", "link": "grad", "format": {"num_format": "yyyy"}},
+        {"cell": "Jahr", "link": "geburtsdatum", "format": {"num_format": "yyyy"}},
+        {"cell": "Grad", "link": "grad"},
         {"cell": "Mobilnummer", "link": "mobilnummer"},
         {"cell": "Adresse", "link": "adresse_1"},
         {"cell": "PLZ", "link": "plz"},
