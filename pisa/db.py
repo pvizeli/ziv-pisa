@@ -3,6 +3,8 @@ from datetime import datetime
 import logging
 import sqlite3
 
+from .sql_functions import sql_order_grad
+
 _LOGGER = logging.getLogger(__name__)
 
 MAP_FIELD_TO_TYPE = {
@@ -31,6 +33,9 @@ class TmpDB(object):
 
         self._con = sqlite3.connect(str(filename))
         self._con.row_factory = dict_factory
+
+        # add sql functions
+        self._con.create_function('SortGrad', 1, sql_order_grad)
 
     def close(self):
         """Destroy temporary database."""

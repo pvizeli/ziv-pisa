@@ -3,7 +3,7 @@ import logging
 
 import xlsxwriter
 
-from .util import write_head, write_group_head
+from .util import init_document, write_head, write_group_head
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -13,6 +13,10 @@ def make_manschaftsliste(filename, db, config):
     workbook = xlsxwriter.Workbook(str(filename))
     sheet = workbook.add_worksheet()
     head = [row['link'] for row in config['head']]
+
+    # document settings
+    if 'document' in config:
+        init_document(sheet, config['document'])
 
     # head
     head_style = write_head(workbook, sheet, config)

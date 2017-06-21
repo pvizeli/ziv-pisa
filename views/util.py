@@ -1,5 +1,24 @@
 """Utils for work with excel."""
 
+PAPER_MAP = {
+    'default': 0,
+    'a4': 9
+}
+
+
+def init_document(sheet, config):
+    """Set page settings."""
+    sheet.set_paper(PAPER_MAP[config.get('page', 'default')])
+
+    if 'margin' in config:
+        sheet.set_margins(**config['margin'])
+
+    if 'alignment' in config:
+        if 'landscape' == config['alignment']:
+            sheet.set_landscape()
+        if 'portrait' == config['alignment']:
+            sheet.set_portrait()
+
 
 def write_head(workbook, sheet, config):
     """Write header to excel."""
@@ -10,6 +29,9 @@ def write_head(workbook, sheet, config):
 
     for idx, data in enumerate(config['head']):
         sheet.write(0, idx, data['cell'], form)
+
+        if 'size' in data:
+            sheet.set_column(idx, idx, data['size'])
 
     # generate head / styles
     head_style = {}
