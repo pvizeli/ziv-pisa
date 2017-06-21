@@ -9,7 +9,7 @@ GRAD_SORT_MAP = {
     "Wachtmeister": 6,
     "Korporal": 7,
     "Gefreiter": 8,
-    "Soldat": 9
+    "Soldat": 8
 }
 
 

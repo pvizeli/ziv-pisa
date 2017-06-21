@@ -1,0 +1,1 @@
+"""WebApps module folder."""

@@ -5,6 +5,7 @@ Erstellt brauchbare XLSX listen aus den Pisa Daten. Kann auch eine Datenbank zur
 
 Es kann die `*.lis` dateien aus dem PISA auslesen und weiter verarbeiten.
 
-## Install module
+## Install module (pip)
 
 - xlsxwriter
+- cherrypy
