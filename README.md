@@ -9,3 +9,7 @@ Es kann die `*.lis` dateien aus dem PISA auslesen und weiter verarbeiten.
 
 - xlsxwriter
 - cherrypy
+
+## Gebrauch
+
+Einfach die entsprechende template json datei (example) anpassen und in das root kopieren.
